@@ -2,13 +2,11 @@
 # -*- coding: utf-8 -*-
 
 """
-Created on Sat Oct  4 15:32:48 2025
 
 @author: andreacardiel
 """
 
 #%% Imports
-
 # Running the model on my computer
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -46,7 +44,7 @@ _tokenizer = None
 _model = None
 _chat = None
 
-#%%
+#%% Starting Chat
 def get_chat():
     global _tokenizer, _model, _chat
     if _chat is None:
@@ -56,17 +54,19 @@ def get_chat():
         print("Model loaded. Ready.")
     return _chat
 
-#%%
-@app.get("/")
-def root():
-    return{"message":"Server is running!"}
-#%%
+#%% Resetting Chat
 @app.post("/reset")
 def reset_chat():
     chat = get_chat()
     chat.reset() 
     return {"ok": True}
-#%%
+
+#%% Check server is working
+@app.get("/")
+def root():
+    return{"message":"Server is running!"}
+
+#%% Directory check
 @app.get("/check")
 def check():
     return {
@@ -80,6 +80,6 @@ class ChatRequest(BaseModel):
     message: str  # what the user sends
 @app.post("/chat")
 def chat_endpoint(body: ChatRequest):
-    chat = get_chat()  # this loads or reuses the Chat() from Step 4
+    chat = get_chat()  
     reply = chat.say(body.message)
     return {"reply": reply}
