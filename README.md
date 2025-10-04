@@ -1,7 +1,6 @@
 # medassist
 Rudimentary chatbot for simulating patient-provider interactions. Not real medical advice. At all.
-
-[![Watch the demo](docs/demo.mp4)
+▶️ [Watch the demo](docs/Medassist-Demo.mp4)
 
 
 ## Motivations
@@ -13,9 +12,6 @@ It has been difficult to find available datasets that allow me to truly  explore
 Largely inspired by this paper, which fine-tunes LLMs on this data, I did the same, just to see for myself the true potential of where medicine and technology may be headed.
 
 I'm still working on the model in of itself - but just wanted to see what I could do in a short amount of time and I think it's pretty cool!
-
-## Demo 
-
 
 ## Quickstart
 
