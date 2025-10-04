@@ -1,6 +1,9 @@
 # medassist
 Rudimentary chatbot for simulating patient-provider interactions. Not real medical advice. At all.
 
+<video src="docs/demo.mp4" controls width="720" muted>
+  Sorry—your browser doesn’t support embedded videos.
+</video>
 
 ## Motivations
 As a pre-med who studied data science - I am deeply interested in the intersection of
