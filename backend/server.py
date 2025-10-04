@@ -2,14 +2,12 @@
 # -*- coding: utf-8 -*-
 
 """
-Created on Sat Oct  4 15:32:48 2025
-
 @author: andreacardiel
 """
 
 #%% Imports
 
-# Running the model on my computer
+# Running the model on my computer - was giving me a hard time!
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
@@ -20,8 +18,6 @@ from pydantic import BaseModel
 # API
 from fastapi import FastAPI # server setup!
 from fastapi.middleware.cors import CORSMiddleware
-
-
 
 
 #%% Setting up the actual API 
@@ -46,7 +42,8 @@ _tokenizer = None
 _model = None
 _chat = None
 
-#%%
+#%% Starting Chat
+
 def get_chat():
     global _tokenizer, _model, _chat
     if _chat is None:
@@ -56,17 +53,20 @@ def get_chat():
         print("Model loaded. Ready.")
     return _chat
 
-#%%
-@app.get("/")
-def root():
-    return{"message":"Server is running!"}
-#%%
+#%% Resetting chat
+
 @app.post("/reset")
 def reset_chat():
     chat = get_chat()
     chat.reset() 
     return {"ok": True}
-#%%
+    
+#%% Check if server running
+@app.get("/")
+def root():
+    return{"message":"Server is running!"}
+
+#%% File path check
 @app.get("/check")
 def check():
     return {
@@ -74,12 +74,13 @@ def check():
         "adapter_dir": ADAPTER_DIR,
         "has_prompt": bool(PROMPT),
     }
-#%%
 
+
+#%% Acutal chat request
 class ChatRequest(BaseModel):
-    message: str  # what the user sends
+    message: str  # input
 @app.post("/chat")
 def chat_endpoint(body: ChatRequest):
-    chat = get_chat()  # this loads or reuses the Chat() from Step 4
+    chat = get_chat()  # this loads or reuses the Chat() 
     reply = chat.say(body.message)
     return {"reply": reply}
