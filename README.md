@@ -1,5 +1,5 @@
 # medassist
-Rudimentary chatbot for simulating patient-provider interactions. Not real medical advice. At all.
+Rudimentary chatbot for simulating patient-provider interactions. Not real medical advice. At all. **Model is still in progress!**
 
 ▶️ [Watch the demo](docs/Medassist-Demo.mp4)
 
