@@ -2,7 +2,6 @@
 Rudimentary chatbot for simulating patient-provider interactions. Not real medical advice. At all.
 
 <video src="docs/demo.mp4" controls width="720" muted>
-  Sorry—your browser doesn’t support embedded videos.
 </video>
 
 ## Motivations
